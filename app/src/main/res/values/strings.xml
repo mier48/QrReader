@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QrReader</string>
+    <string name="app_name">Qr Reader</string>
     <string name="button_scan">Escanear código</string>
 
     <string name="menu_home">Home</string>

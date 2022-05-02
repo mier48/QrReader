@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.albertomier.qrreader.databinding.FragmentRecordsBinding
 import com.albertomier.qrreader.ui.adapter.QrAdapter
 import com.albertomier.qrreader.ui.viewmodel.QrViewModel
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,6 +39,11 @@ class RecordFragment : Fragment() {
         qrViewModel.qrListModel.observe(viewLifecycleOwner, Observer {
             binding.recordsList.adapter = QrAdapter(it)
         })
+
+        MobileAds.initialize(activity) {}
+
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
 
         return root
     }
