@@ -1,0 +1,2 @@
+# QrReader
+QrReader for Android
