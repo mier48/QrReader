@@ -13,6 +13,6 @@ object Utils {
             return current.format(formatter)
         }
 
-        return "";
+        return ""
     }
 }

@@ -6,10 +6,11 @@ import androidx.room.PrimaryKey
 import com.albertomier.qrreader.domain.model.Qr
 
 @Entity(tableName = "qr_records")
-class QrEntity (
+class QrEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") var id: Int = 0,
     @ColumnInfo(name = "url") var url: String,
-    @ColumnInfo(name = "date") var date: String)
+    @ColumnInfo(name = "date") var date: String
+)
 
 fun Qr.toDatabase() = QrEntity(url = url, date = date)
