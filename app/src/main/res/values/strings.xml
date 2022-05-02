@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">QrReader</string>
     <string name="button_scan">Escanear código</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_record">Historial</string>
 </resources>

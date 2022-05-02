@@ -4,7 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.albertomier.qrreader.R
 import com.albertomier.qrreader.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.zxing.integration.android.IntentIntegrator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,19 +24,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnScanner.setOnClickListener {
-            initScanner()
-        }
-    }
+        val navView: BottomNavigationView = binding.navView
 
-    private fun initScanner() {
-        val integrator = IntentIntegrator(this)
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
-        integrator.setPrompt("QR Scanner")
-        integrator.setTorchEnabled(false)
-        integrator.setBeepEnabled(true)
-        integrator.setOrientationLocked(true)
-        integrator.initiateScan()
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_home, R.id.navigation_record
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
