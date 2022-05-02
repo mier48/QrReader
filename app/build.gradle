@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.albertomier.qrreader"
-        minSdk 21
+        minSdk 24
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -69,7 +69,7 @@ dependencies {
     kapt "androidx.room:room-compiler:2.4.2"
     //zxing
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
-    
+
     testImplementation 'junit:junit:4.13.2'
     testImplementation "io.mockk:mockk:1.12.2"
     testImplementation "androidx.arch.core:core-testing:2.1.0"
