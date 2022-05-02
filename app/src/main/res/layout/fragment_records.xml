@@ -6,13 +6,16 @@
     android:layout_height="match_parent"
     android:background="@color/list_background"
     android:paddingBottom="60dp"
-    tools:context=".ui.view.MainFragment">
+    tools:context=".ui.view.RecordFragment">
 
-    <com.journeyapps.barcodescanner.DecoratedBarcodeView
-        android:id="@+id/qrView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recordsList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:zxing_preview_scaling_strategy="centerCrop"
-        app:zxing_use_texture_view="false" />
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
