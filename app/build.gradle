@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -20,8 +22,15 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable false
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix '-DEBUG'
+            testCoverageEnabled true
+            debuggable true
         }
     }
     compileOptions {
@@ -31,14 +40,28 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
     buildFeatures {
         viewBinding = true
     }
+    productFlavors {
+        dev {
+            applicationIdSuffix '.dev'
+            versionNameSuffix '-DEV'
+            resValue "string", "app_name", "The Qr Reader DEV"
+        }
+        pro {
+            resValue "string", "app_name", "The Qr Reader"
+        }
+    }
+}
+
+configurations {
+    devDebugImplementation
+    proDebugImplementation
+    proReleaseImplementation
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
@@ -71,6 +94,12 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
     //Google ads
     implementation 'com.google.android.gms:play-services-ads:20.6.0'
+    // Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:29.3.1')
+    //Firebase SDK for Google Analytics
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    //Firebase SDK for Google Crashlytics
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation "io.mockk:mockk:1.12.2"
