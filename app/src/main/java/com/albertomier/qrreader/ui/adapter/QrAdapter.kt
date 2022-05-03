@@ -7,7 +7,8 @@ import com.albertomier.qrreader.R
 import com.albertomier.qrreader.domain.model.Qr
 
 class QrAdapter(
-    private val qrList: List<Qr>
+    private val qrList: List<Qr>,
+    private val onClickListener: (Qr) -> Unit
 ) : RecyclerView.Adapter<QrViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QrViewHolder {
@@ -17,7 +18,7 @@ class QrAdapter(
 
     override fun onBindViewHolder(holder: QrViewHolder, position: Int) {
         val item = qrList[position]
-        holder.render(item)
+        holder.render(item, onClickListener)
     }
 
     override fun getItemCount(): Int {

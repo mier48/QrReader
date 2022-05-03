@@ -1,5 +1,7 @@
 package com.albertomier.qrreader.ui.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.albertomier.qrreader.databinding.FragmentRecordsBinding
+import com.albertomier.qrreader.domain.model.Qr
 import com.albertomier.qrreader.ui.adapter.QrAdapter
 import com.albertomier.qrreader.ui.viewmodel.QrViewModel
 import com.google.android.gms.ads.AdRequest
@@ -37,7 +40,7 @@ class RecordFragment : Fragment() {
         qrViewModel.onCreate()
 
         qrViewModel.qrListModel.observe(viewLifecycleOwner, Observer {
-            binding.recordsList.adapter = QrAdapter(it)
+            binding.recordsList.adapter = QrAdapter(it, { qr -> onQrSelected(qr) })
         })
 
         MobileAds.initialize(activity) {}
@@ -46,6 +49,14 @@ class RecordFragment : Fragment() {
         binding.adView.loadAd(adRequest)
 
         return root
+    }
+
+    private fun onQrSelected(qr: Qr) {
+        if (qr.url.startsWith("http://") || qr.url.startsWith("https://")) {
+            val defaultBrowser = Intent(Intent.ACTION_VIEW)
+            defaultBrowser.data = Uri.parse(qr.url)
+            startActivity(defaultBrowser)
+        }
     }
 
     override fun onDestroyView() {
