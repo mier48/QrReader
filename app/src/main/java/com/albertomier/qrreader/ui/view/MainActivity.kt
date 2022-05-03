@@ -22,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val qrViewModel: QrViewModel by viewModels()
+    //private val qrViewModel: QrViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,19 +41,17 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-        if (result != null) {
-            if (result.contents == null) {
-                Toast.makeText(this, "Cancelado", Toast.LENGTH_LONG).show()
-            } else {
-                val qr = Qr(url = result.contents, date = Utils.getCurrentDateTime())
-                qrViewModel.addToFavorite(qr)
-                Toast.makeText(this, "El valor escaneado es: " + result.contents, Toast.LENGTH_LONG)
-                    .show()
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+//        if (result != null) {
+//            if (result.contents == null) {
+//                Toast.makeText(this, "Cancelado", Toast.LENGTH_LONG).show()
+//            } else {
+//                Toast.makeText(this, "El valor escaneado es: " + result.contents, Toast.LENGTH_LONG)
+//                    .show()
+//            }
+//        } else {
+//            super.onActivityResult(requestCode, resultCode, data)
+//        }
+//    }
 }

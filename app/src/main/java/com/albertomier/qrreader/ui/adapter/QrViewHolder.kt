@@ -9,7 +9,13 @@ class QrViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val binding = QrBinding.bind(view)
 
-    fun render(qr: Qr) {
+    fun render(qr: Qr, onClickListener: (Qr) -> Unit) {
+        binding.title.text = qr.url
+        binding.date.text = qr.date
+
+        itemView.setOnClickListener {
+            onClickListener(qr)
+        }
     }
 
 }
