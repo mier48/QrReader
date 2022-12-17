@@ -1,2 +1,7 @@
-# QrReader
-QrReader for Android
+# QR Reader
+
+Qr Reader for Android
+
+## Built with 🛠️
+
+* [Kotlin]
